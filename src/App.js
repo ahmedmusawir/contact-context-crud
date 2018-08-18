@@ -3,16 +3,19 @@ import React, { Component } from 'react';
 import Contacts from './components/Contacts';
 import Header from './components/Header';
 import NotFound404 from './components/NotFound404';
+import { Provider } from './context';
 
 class App extends Component {
   render() {
     return (
-      <div className="contact-context-app">
-        <Header branding="Contacts" />
-        <div className="container">
-          <Contacts />
+      <Provider>
+        <div className="contact-context-app">
+          <Header branding="Contacts" />
+          <div className="container">
+            <Contacts />
+          </div>
         </div>
-      </div>
+      </Provider>
     );
   }
 }
