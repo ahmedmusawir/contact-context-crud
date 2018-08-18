@@ -9,7 +9,10 @@ export class Contact extends Component {
     this.setState({
       showContactInfo: !this.state.showContactInfo
     });
+  };
+  onDeteClick = () => {
     // console.log(this.state);
+    this.props.deleteClickHandler();
   };
 
   render() {
@@ -30,7 +33,7 @@ export class Contact extends Component {
             <i
               className="fa fa-times float-right"
               aria-hidden="true"
-              onClick={this.onShowClick}
+              onClick={this.onDeteClick}
               style={{ cursor: 'pointer' }}
             />
           </h4>
@@ -61,6 +64,7 @@ export class Contact extends Component {
 Contact.propTypes = {
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired
+  phone: PropTypes.string.isRequired,
+  deleteClickHandler: PropTypes.func.isRequired
 };
 export default Contact;
