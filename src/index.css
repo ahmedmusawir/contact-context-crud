@@ -6568,5 +6568,10 @@ a {
 
 .contact-context-app .card {
   box-shadow: 3px 3px 8px #cdcdcd; }
+.contact-context-app .add-contact-from-container input {
+  box-shadow: 0.05rem 0.05rem 10px #e3e3e3; }
+.contact-context-app .add-contact-from-container .btn {
+  border: 1px solid #e1e1e1;
+  box-shadow: 0.1rem 0.1rem 6px #e3e3e3; }
 
 /*# sourceMappingURL=index.css.map */
