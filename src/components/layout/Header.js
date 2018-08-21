@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 const Header = props => {
   const { branding } = props;
@@ -10,24 +11,24 @@ const Header = props => {
       className="navbar navbar-expand-sm navbar-dark bg-danger mb-3 py-0"
     >
       <div className="container">
-        <a href="/" className="navbar-brand">
-          {branding}
-        </a>
+        <NavLink exact to="/" className="navbar-brand">
+          <i className="fa fa-address-book" aria-hidden="true" /> {branding}
+        </NavLink>
         <ul className="navbar-nav ml-auto flex-row">
           <li className="nav-item">
-            <a href="/" className="nav-link active">
-              Home
-            </a>
+            <NavLink exact to="/" className="nav-link">
+              <i className="fa fa-home" aria-hidden="true" /> Home
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a href="/" className="nav-link">
-              Add
-            </a>
+            <NavLink to="/about" className="nav-link">
+              <i className="fa fa-question-circle" aria-hidden="true" /> About
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a href="/" className="nav-link">
-              Blog
-            </a>
+            <NavLink to="/add" className="nav-link">
+              <i className="fa fa-plus" aria-hidden="true" /> Add Contact
+            </NavLink>
           </li>
         </ul>
       </div>

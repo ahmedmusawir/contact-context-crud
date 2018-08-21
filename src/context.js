@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 const Context = React.createContext();
 
@@ -23,37 +24,19 @@ const reducer = (state, action) => {
 
 export class Provider extends Component {
   state = {
-    contacts: [
-      {
-        id: 1,
-        name: 'John Doe 1',
-        email: 'jdoe1@email.com',
-        phone: '111.111.1111'
-      },
-      {
-        id: 2,
-        name: 'John Doe 2',
-        email: 'jdoe2@email.com',
-        phone: '222.222.2222'
-      },
-      {
-        id: 3,
-        name: 'John Doe 3',
-        email: 'jdoe3@email.com',
-        phone: '333.333.3333'
-      },
-      {
-        id: 4,
-        name: 'John Doe 4',
-        email: 'jdoe4@email.com',
-        phone: '444.444.4444'
-      }
-    ],
+    contacts: [],
     dispatch: action => {
       this.setState(state => reducer(state, action));
     }
   };
 
+  componentDidMount() {
+    axios.get('http://localhost:8000/users').then(res => {
+      console.log(res.data);
+      this.setState({ contacts: res.data });
+      console.log(this.state);
+    });
+  }
   render() {
     return (
       <Context.Provider value={this.state}>

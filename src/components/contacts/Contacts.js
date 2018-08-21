@@ -9,16 +9,19 @@ export class Contacts extends Component {
         {value => {
           const { contacts } = value;
           return (
-            <div className="row">
-              {contacts.map(contact => (
-                <Contact
-                  key={contact.id}
-                  id={contact.id}
-                  name={contact.name}
-                  email={contact.email}
-                  phone={contact.phone}
-                />
-              ))}
+            <div className="home-page pt-5">
+              <h1 className="text-center mb-4">Contact List</h1>
+              <div className="row">
+                {contacts.map(contact => (
+                  <Contact
+                    key={contact.id}
+                    id={contact.id}
+                    name={contact.name}
+                    email={contact.email}
+                    phone={contact.phone}
+                  />
+                ))}
+              </div>
             </div>
           );
         }}

@@ -59,6 +59,9 @@ export class AddContact extends Component {
       phone: '',
       errors: {}
     });
+
+    //Redirect to Home
+    this.props.history.push('/');
   };
 
   onChange = e => {
@@ -73,7 +76,7 @@ export class AddContact extends Component {
         {value => {
           const { dispatch } = value;
           return (
-            <div className="add-contact-from-container">
+            <div className="add-contact-from-container animated slideInLeft pt-5">
               <div className="card mb-3">
                 <div className="card-header text-danger">
                   <strong>Add Contact</strong>

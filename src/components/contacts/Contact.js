@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Consumer } from '../../context';
+import axios from 'axios';
 
 export class Contact extends Component {
   state = {
@@ -12,7 +13,9 @@ export class Contact extends Component {
     });
   };
   onDeleteClick = (id, dispatch) => {
-    dispatch({ type: 'DELETE_CONTACT', payload: id });
+    axios
+      .delete(`http://localhost:8000/users/${id}`)
+      .then(res => dispatch({ type: 'DELETE_CONTACT', payload: id }));
   };
 
   render() {
@@ -26,7 +29,7 @@ export class Contact extends Component {
           return (
             <div className="col-sm-6 col-md-6 col-lg-6">
               <div className="card card-body mb-3">
-                <h4 className="animated lightSpeedIn">
+                <h4 className="animated bounceIn">
                   <i
                     className="fa fa-arrow-circle-down"
                     aria-hidden="true"
@@ -51,13 +54,13 @@ export class Contact extends Component {
                       <i className="fa fa-phone-square" aria-hidden="true" />{' '}
                       Phone:
                     </strong>{' '}
-                    {email}
+                    {phone}
                   </li>
                   <li className="list-group-item">
                     <strong className="text-danger">
                       <i className="fa fa-envelope" aria-hidden="true" /> Email:
                     </strong>{' '}
-                    {phone}
+                    {email}
                   </li>
                 </ul>
               </div>
