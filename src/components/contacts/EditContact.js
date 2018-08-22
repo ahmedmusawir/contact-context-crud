@@ -4,13 +4,26 @@ import InputGroup from '../layout/InputGroup';
 import uuid from 'uuid';
 import axios from 'axios';
 
-export class AddContact extends Component {
+export class EditContact extends Component {
   state = {
     name: '',
     email: '',
     phone: '',
     errors: {}
   };
+
+  async componentDidMount() {
+    const { id } = this.props.match.params;
+    const res = await axios.get(`http://localhost:8000/users/${id}`);
+
+    const contact = res.data;
+    // console.log(contact);
+    this.setState({
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone
+    });
+  }
 
   onSubmit = async (dispatch, e) => {
     e.preventDefault();
@@ -44,18 +57,21 @@ export class AddContact extends Component {
       return;
     }
 
-    const newContact = {
-      id: uuid(),
+    const updatedContact = {
       name,
       email,
       phone
     };
+    //Put Request
+    const { id } = this.props.match.params;
 
-    //Posing Date to JSON Server
-    const res = await axios.post('http://localhost:8000/users', newContact);
+    const res = await axios.put(
+      `http://localhost:8000/users/${id}`,
+      updatedContact
+    );
 
     dispatch({
-      type: 'ADD_CONTACT',
+      type: 'UPDATE_CONTACT',
       payload: res.data
     });
 
@@ -86,7 +102,7 @@ export class AddContact extends Component {
             <div className="add-contact-from-container animated slideInLeft pt-5">
               <div className="card mb-3">
                 <div className="card-header text-danger">
-                  <strong>Add Contact</strong>
+                  <strong>Edit Contact</strong>
                 </div>
                 <div className="card-body">
                   <form onSubmit={this.onSubmit.bind(this, dispatch)}>
@@ -126,7 +142,7 @@ export class AddContact extends Component {
                         <input
                           type="submit"
                           className="form-control form-control-lg btn btn-light mt-2"
-                          value="Add Contact"
+                          value="Update Contact"
                         />
                       </div>
                     </div>
@@ -141,4 +157,4 @@ export class AddContact extends Component {
   }
 }
 
-export default AddContact;
+export default EditContact;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Consumer } from '../../context';
 import axios from 'axios';
@@ -12,10 +13,14 @@ export class Contact extends Component {
       showContactInfo: !this.state.showContactInfo
     });
   };
-  onDeleteClick = (id, dispatch) => {
-    axios
-      .delete(`http://localhost:8000/users/${id}`)
-      .then(res => dispatch({ type: 'DELETE_CONTACT', payload: id }));
+  onDeleteClick = async (id, dispatch) => {
+    try {
+      await axios.delete(`http://localhost:8000/users/${id}`);
+      dispatch({ type: 'DELETE_CONTACT', payload: id });
+    } catch (e) {
+      console.log('Delete Failed in Contact.js with Axios: ' + e);
+      return;
+    }
   };
 
   render() {
@@ -31,7 +36,7 @@ export class Contact extends Component {
               <div className="card card-body mb-3">
                 <h4 className="animated bounceIn">
                   <i
-                    className="fa fa-arrow-circle-down"
+                    className="fa fa-arrow-circle-down text-secondary"
                     aria-hidden="true"
                     onClick={this.onShowClick}
                     style={{ cursor: 'pointer' }}
@@ -43,6 +48,13 @@ export class Contact extends Component {
                     onClick={this.onDeleteClick.bind(this, id, dispatch)}
                     style={{ cursor: 'pointer' }}
                   />
+                  <Link to={`/edit/${id}`}>
+                    <i
+                      className="fa fa-pencil-square-o float-right pr-3 pt-1"
+                      aria-hidden="true"
+                      style={{ cursor: 'pointer' }}
+                    />
+                  </Link>
                 </h4>
                 <ul
                   className={
