@@ -41,7 +41,7 @@ export class Provider extends Component {
   };
 
   async componentDidMount() {
-    const res = await axios.get('http://localhost:8000/users');
+    const res = await axios.get('http://142.93.105.156:8000/users');
 
     this.setState({ contacts: res.data });
   }

@@ -52,7 +52,10 @@ export class AddContact extends Component {
     };
 
     //Posing Date to JSON Server
-    const res = await axios.post('http://localhost:8000/users', newContact);
+    const res = await axios.post(
+      'http://142.93.105.156:8000/users',
+      newContact
+    );
 
     dispatch({
       type: 'ADD_CONTACT',

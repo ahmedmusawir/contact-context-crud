@@ -15,7 +15,7 @@ export class Contact extends Component {
   };
   onDeleteClick = async (id, dispatch) => {
     try {
-      await axios.delete(`http://localhost:8000/users/${id}`);
+      await axios.delete(`http://142.93.105.156:8000/users/${id}`);
       dispatch({ type: 'DELETE_CONTACT', payload: id });
     } catch (e) {
       console.log('Delete Failed in Contact.js with Axios: ' + e);

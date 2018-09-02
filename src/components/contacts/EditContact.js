@@ -14,7 +14,7 @@ export class EditContact extends Component {
 
   async componentDidMount() {
     const { id } = this.props.match.params;
-    const res = await axios.get(`http://localhost:8000/users/${id}`);
+    const res = await axios.get(`http://142.93.105.156:8000/users/${id}`);
 
     const contact = res.data;
     // console.log(contact);
@@ -66,7 +66,7 @@ export class EditContact extends Component {
     const { id } = this.props.match.params;
 
     const res = await axios.put(
-      `http://localhost:8000/users/${id}`,
+      `http://142.93.105.156:8000/users/${id}`,
       updatedContact
     );
 
